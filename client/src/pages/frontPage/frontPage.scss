@@ -1,0 +1,29 @@
+.frontpage{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    flex-direction: row;
+
+    &__tagline {
+        width: 60%;
+
+         &__text > h1 {
+             font-size: 35px;
+         }
+
+         &__text > p {
+             font-size: 20px;
+             padding-bottom: 30px;
+         }
+    }
+
+    &__img {
+        width: 40%;
+    }
+}
+.frontPageImg{
+    height: 500px;
+}
