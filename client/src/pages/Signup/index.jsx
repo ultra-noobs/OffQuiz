@@ -60,7 +60,7 @@ const SignupForm = () => {
         institution
     }
     try {
-      const data = await Axios.post('http://localhost:5000/register', userData);
+      const data = await Axios.post('https://peaceful-island-93608.herokuapp.com/register', userData);
       const token = data.data.token;
       const errorMessage = data.data.errorMessage;
       if(errorMessage){

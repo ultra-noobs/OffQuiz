@@ -18,7 +18,7 @@ const ResponseTable = () => {
     
     useEffect( () => {
       let documentId = location.pathname.substr(25, location.pathname.length - 25);
-      let endpoint = "http://localhost:5000/profile/batch/" + documentId;
+      let endpoint = "https://peaceful-island-93608.herokuapp.com/profile/batch/" + documentId;
 
       const token = getToken();
         Axios.get(endpoint, {
@@ -34,13 +34,13 @@ const ResponseTable = () => {
         setAuth(response) 
         setLoading(false)
       })
-    },[getToken, getStatus, location.pathname])
+    },[])
 
   return (
       <Container>
     {isLoading && <Loader />}
       {!isLoading && !auth && <Redirect to="/login" />}
-      {!isLoading && auth && (<div onClick={() => test()}>
+      {!isLoading && auth && (<div>
           <Header as="h1">Students of batch {batchno}</Header>
     <Table celled>
       <Table.Header>

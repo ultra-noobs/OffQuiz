@@ -22,13 +22,14 @@ const View = () => {
   const [open,setOpen] = useState(false);
 
   useEffect(() => {
-    let endpoint = "http://localhost:5000/dashboard/view/" + id;
+    let endpoint = "https://peaceful-island-93608.herokuapp.com/dashboard/view/" + id;
 
     Axios.get(endpoint, {
       headers: {
         Authorization: token,
       }
     }).then((response) => {
+      console.log(response.data)
       setCurrentQuiz(response.data);
       getStatus()
       .then((response) => {
@@ -36,7 +37,7 @@ const View = () => {
         setLoading(false);
       })
     })
-  }, [getStatus, id, token])
+  }, [])
 
   const closeDialog = ()=>{
     setOpen(false);
@@ -49,7 +50,7 @@ const View = () => {
   const circulateQuiz = async () => {
     try {
       const response = await Axios.get(
-        `http://localhost:5000/dashboard/circulate/${id}`,
+        `https://peaceful-island-93608.herokuapp.com/dashboard/circulate/${id}`,
        {
         headers: {
           Authorization: token,
@@ -75,7 +76,7 @@ const View = () => {
         {!isLoading && auth && (
           <Container>
             <h2 className="heading">{currentQuiz.title}<Button floated="right" onClick={editQuiz} >Edit</Button><Button floated="right" onClick={circulateQuiz} >Circulate</Button> </h2>
-            <span>Time : {currentQuiz.time}, Date : {currentQuiz.date}, Batch: {currentQuiz.batch}</span>
+            <span>StartTime : {currentQuiz.time}, Endtime: {currentQuiz.endtime}, Date : {currentQuiz.date}, Batch: {currentQuiz.batch}, Responses no: {currentQuiz.phno}</span>
             <Divider />
             {renderQuestions()}
             <Modal
