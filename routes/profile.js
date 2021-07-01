@@ -32,7 +32,7 @@ router
       const { gmail, batchno } = req.body;
       const token = req.token;
       if (gmail && gmail.trim() !== "") {
-        const link = `http://localhost:3000/formRegister/${token}/${batchno}`;
+        const link = `https://offquiz-app.netlify.app/formRegister/${token}/${batchno}`;
         var transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
@@ -111,7 +111,7 @@ router.get("/getBatch", authRequired, (req, res) => {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const batchName = doc.data().name;
-          const link = `http://localhost:3000/formRegister/${token}/${batchName}`;
+          const link = `https://offquiz-app.netlify.app/formRegister/${token}/${batchName}`;
           const size = doc.data().students.length;
           finalResult.push({
             link,
