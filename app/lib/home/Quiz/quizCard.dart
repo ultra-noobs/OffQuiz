@@ -20,7 +20,7 @@ class _QuizCardState extends State<QuizCard> {
     String quizDate = widget.quiz.date;
     String quizStartTime  =widget.quiz.startTime;
     String quizEndTime = widget.quiz.endTime;
-    String currentTime = DateFormat("hh:mm").format(DateTime.now());
+    String currentTime = DateFormat("kk:mm").format(DateTime.now());
     if(currentDate!=quizDate) return false;
     bool isStart = currentTime.compareTo(quizStartTime)>=0;
     bool isEnd = currentTime.compareTo(quizEndTime)>=0;
@@ -108,7 +108,14 @@ class _QuizCardState extends State<QuizCard> {
                 ),
               ),
               SizedBox(
-                height: 40.0,
+                height: 30.0,
+              ),
+              Text(
+                "Date : " + widget.quiz.date,
+                style:TextStyle(color:Colors.grey[600],fontSize:18)
+              ),
+              SizedBox(
+                height: 20.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

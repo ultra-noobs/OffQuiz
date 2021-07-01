@@ -58,8 +58,8 @@ AppBar quizAppBar(String title, BuildContext context, int _duration,Function sub
         backgroundColor: Colors.orange[100],
         textStyle: TextStyle(
             fontSize: 15.0,
-            color: Colors.blue[900],
-            fontWeight: FontWeight.w200),
+            color: Colors.black,
+            fontWeight: FontWeight.bold),
         textFormat: CountdownTextFormat.HH_MM_SS,
         isReverse: true,
         isReverseAnimation: true,
