@@ -12,7 +12,14 @@ const Create = () => {
     const [ questionCount, setquestionCount ] = useState(0);
     const [ questionsInput, setquestionsInput ] = useState([]);
     const [ questionAndAnswers, setquestionAndAnswers ] = useState([{ question:'', answer: '' }]);
-    const [ quizDateAndTimeAndTitleAndBatch, setQuizDateAndTimeAndTitleAndBatch ] = useState({date: '', time: '', title: '', batch: ''})
+    const [ quizDateAndTimeAndTitleAndBatch, setQuizDateAndTimeAndTitleAndBatch ] = useState({
+            date: '', 
+            time: '', 
+            title: '', 
+            batch: '', 
+            endtime: '',
+            phno: '',
+        });
     const [ batches, setBatches ] = useState([]);
 
     const incrementAndRender = () => {
@@ -45,13 +52,14 @@ const Create = () => {
         const finalQnA = questionAndAnswers.filter(element => !!element.value || !!element.answer);
         console.log(questionAndAnswers);
         await Axios.post(
-            'http://localhost:5000/dashboard/saveQuiz',
-            {
+            'https://peaceful-island-93608.herokuapp.com/dashboard/saveQuiz', {
                 finalQnA,
                 time: quizDateAndTimeAndTitleAndBatch.time,
                 date: quizDateAndTimeAndTitleAndBatch.date,
                 title: quizDateAndTimeAndTitleAndBatch.title,
-                batch: quizDateAndTimeAndTitleAndBatch.batch
+                endtime: quizDateAndTimeAndTitleAndBatch.endtime,
+                batch: quizDateAndTimeAndTitleAndBatch.batch,
+                phno: quizDateAndTimeAndTitleAndBatch.phno,
             },
             {
                 headers: {
@@ -64,7 +72,7 @@ const Create = () => {
 
     useEffect(() => {
         const token = getToken();
-        let endpoint = 'http://localhost:5000/dashboard/quizbatches'
+        let endpoint = 'https://peaceful-island-93608.herokuapp.com/dashboard/quizbatches'
         Axios.get(endpoint,{
             headers: {
                 Authorization: token,
@@ -75,7 +83,7 @@ const Create = () => {
         })
 
         // console.log(response);
-    },[getToken])
+    },[])
 
     const setDateAndTimeAndTitle = (e) => {
         setQuizDateAndTimeAndTitleAndBatch({
@@ -105,8 +113,10 @@ const Create = () => {
                     <label style={buttonStyle}>Select quiz batch </label> <br />
                     <Dropdown floated="right" clearable options={batches} name="batch" selection onChange={(e, data) => handleBatchSelection(e, data)} /> <br /> 
                     <label style={buttonStyle}>Enter quiz timing </label>
-                    <input style={buttonStyle} name="date" onChange={(e) => setDateAndTimeAndTitle(e)} type="date"></input>
-                    <input style={buttonStyle} name="time" onChange={(e) => setDateAndTimeAndTitle(e)} type="time"></input> 
+                    <input style={buttonStyle} name="date" placeholder="Enter quiz date" onChange={(e) => setDateAndTimeAndTitle(e)} type="date"></input>
+                    <input style={buttonStyle} name="time" placeholder="Enter quiz start time" onChange={(e) => setDateAndTimeAndTitle(e)} type="time"></input> 
+                    <input style={buttonStyle} name="endtime" placeholder="Enter quiz end time" onChange={(e) => setDateAndTimeAndTitle(e)} type="time"></input> 
+                    <input style={buttonStyle} name="phno" placeholder="Enter phone for accepting responses" onChange={(e) => setDateAndTimeAndTitle(e)} type="number"></input>
                     {renderQuestionInput()}
                 </Form>
                 <Button icon style={buttonStyle} labelPosition='left' floated="right" onClick={() => incrementAndRender()}>

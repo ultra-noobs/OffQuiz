@@ -1,10 +1,12 @@
 import React from "react";
 import { Divider } from "semantic-ui-react";
 import "./About.scss";
+import Navbar from "../../../components/Navigation";
 
 const About = () => {
   return (
     <div>
+      <Navbar />
       <div className="about-body">
         <div className="header">About OffQuiz</div>
         <Divider />

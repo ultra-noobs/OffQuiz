@@ -71,10 +71,12 @@ const Edit = () => {
                 date: quizDateAndTimeAndTitleAndBatch.date,
                 title: quizDateAndTimeAndTitleAndBatch.title,
                 batch: quizDateAndTimeAndTitleAndBatch.batch,
+                endtime: quizDateAndTimeAndTitleAndBatch.endtime,
+                phno: quizDateAndTimeAndTitleAndBatch.phno,
                 isCirculated:false
             }
             const response = await Axios.put(
-                `http://localhost:5000/dashboard/updateQuiz/${id}`,
+                `https://peaceful-island-93608.herokuapp.com/dashboard/updateQuiz/${id}`,
                 {quizInfo},
                 {
                     headers: {
@@ -94,7 +96,7 @@ const Edit = () => {
         if (!isAuthenticated) {
             setLoading(false);
         } else {
-            let endpoint = "http://localhost:5000/dashboard/editInfo/" + id;
+            let endpoint = "https://peaceful-island-93608.herokuapp.com/dashboard/editInfo/" + id;
             let response = await Axios.get(endpoint, {
                 headers: {
                     Authorization: token,
@@ -104,7 +106,9 @@ const Edit = () => {
                 date: response.data.date,
                 time: response.data.time,
                 title: response.data.title,
-                batch: response.data.batch
+                batch: response.data.batch,
+                endtime: response.data.endtime,
+                phno: response.data.phno,
             })
             setBatches(response.data.batchInfo)
             setPreviousQuestion(response.data.finalQuizArray)
@@ -143,6 +147,8 @@ const Edit = () => {
                             <label style={buttonStyle}>Enter quiz timing </label>
                             <input style={buttonStyle} value={quizDateAndTimeAndTitleAndBatch.date} name="date" onChange={(e) => setDateAndTimeAndTitle(e)} type="date"></input>
                             <input style={buttonStyle} value={quizDateAndTimeAndTitleAndBatch.time} name="time" onChange={(e) => setDateAndTimeAndTitle(e)} type="time"></input>
+                            <input style={buttonStyle} value={quizDateAndTimeAndTitleAndBatch.endtime} name="endtime" onChange={(e) => setDateAndTimeAndTitle(e)} type="time"></input>
+                            <input style={buttonStyle} value={quizDateAndTimeAndTitleAndBatch.phno} name="phno" onChange={(e) => setDateAndTimeAndTitle(e)} type="number"></input>
                             <h3>Questions</h3>
                             {showPreviousQuestion()}
                             {renderQuestionInput()}

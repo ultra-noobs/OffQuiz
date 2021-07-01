@@ -22,7 +22,7 @@ const FormRegisteration = () => {
     const handleSubmit = async () => {
         const data = { name: useData.name, id: useData.id, phone: useData.phno, token, batch }
         try {
-            const response = await Axios.put("http://localhost:5000/addStudent", data);
+            const response = await Axios.put("https://peaceful-island-93608.herokuapp.com/addStudent", data);
             const { errorMessage, success } = response.data;
             console.log(errorMessage)
             console.log(success)

@@ -13,7 +13,7 @@ const CardReactComponent = (props) => {
   const { getToken } = useToken();
   const deleteQuiz = async (quizId) => {
     const token = getToken();
-    const endpoint = 'http://localhost:5000/dashboard/delete/' + quizId;
+    const endpoint = 'https://peaceful-island-93608.herokuapp.com/dashboard/delete/' + quizId;
     try {
     await Axios.get(endpoint,{
       headers: {
@@ -31,8 +31,10 @@ const CardReactComponent = (props) => {
     {(data.isCirculated) ? <Label color={"green"} key={"orange"}> Circulated </Label>: <Label color={"red"} key={"orange"}> Not circulated </Label>}
     {(!!data.title) ? <Card.Content header={data.title } />:<Card.Content header="Quiz" /> }
     <Card.Content>
-      <p>date: {data.date}</p>
-      <p>Time: {data.time}</p>
+      <p>Date: {data.date}</p>
+      <p>StartTime: {data.time}</p>
+      <p>EndTime: {data.endtime}</p>
+      <p>Responses: {data.phno}</p>
       <Button icon="trash" primary floated="right" onClick={() => deleteQuiz(id)} />
       <NavLink
         exact

@@ -9,7 +9,7 @@ import FormRegisteration from './pages/Dashboard/Form/index'
 import View from './pages/Dashboard/View/index'
 import Profile from './pages/Dashboard/Profile/index'
 import ResponseTable from './pages/Dashboard/Profile/Reponses/index'
-import About from './pages/Dashboard/About/index'
+import DownloadPage from "./pages/Download/index.jsx";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import React from 'react'
 import 'semantic-ui-css/semantic.min.css'
@@ -26,6 +26,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/download" component={DownloadPage} />
             <Route exact path="/dashboard/create" component={Create} />
             <Route exact path="/dashboard/profile" component={Profile} />
             <Route exact path="/dashboard/view/:id" component={View} />
