@@ -1,4 +1,4 @@
-# offline
+# OffQuiz
 <h2>
           You got a quiz? Worried about poor internet connectivity? Don't worry
           we got your covered !!!
